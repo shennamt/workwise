@@ -1,7 +1,11 @@
+import Landing from '.pages/Landing'
+
 function App() {
-  return (
-    <h1>WorkWise</h1>
-  );
+	return (
+		<div>
+			<h1>WorkWise</h1>
+		</div>
+    );
 }
 
 export default App
