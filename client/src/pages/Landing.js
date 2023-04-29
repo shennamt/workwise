@@ -15,9 +15,9 @@ const Landing = () => {
                     </h1>
                     <p>
                     WorkWise is a user-friendly web app designed to help job seekers easily track their job applications.
-                    With WorkWise, users can their applications, set reminders for follow-ups, and identify which areas their can improve in for interviews.
+                    With WorkWise, users can their applications, set reminders for follow-ups, and identify which areas their can improve in for interviews.<br/>
                     <br/>
-                    By keeping all their job search information in one place, WorkWise empowers job seekers to stay organised and focused on landing their dream job.
+                    By keeping all your job search information in one place, WorkWise empowers job seekers to stay organised and focused on landing your dream job.
                     </p>
                     <button className='btn btn-hero'>
                         Login/Register
