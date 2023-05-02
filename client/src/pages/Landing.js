@@ -1,6 +1,7 @@
 import main from '../assets/images/main.svg'
 import Wrapper from '../assets/wrappers/LandingPage'
 import { Logo } from '../components'
+import { Link } from 'react-router-dom'
 
 const Landing = () => {
     return (
@@ -19,9 +20,9 @@ const Landing = () => {
                     <br/>
                     By keeping all your job search information in one place, WorkWise empowers you to stay organised and focused on landing your dream job.
                     </p>
-                    <button className='btn btn-hero'>
+                    <Link to='/register' className='btn btn-hero'>
                         Begin your journey
-                    </button>
+                    </Link>
                 </div>
 
                 <img src={main} alt='application logging' className='img main-img'/>
