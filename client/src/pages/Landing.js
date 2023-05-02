@@ -1,27 +1,24 @@
-import logo from '../assets/images/logo.svg'
 import main from '../assets/images/main.svg'
 import Wrapper from '../assets/wrappers/LandingPage'
+import Logo from '../components/Logo'
 
 const Landing = () => {
     return (
         <Wrapper>
             <nav>
-                <img src={logo} alt ='workwise' classname='logo'/>
+                <Logo />
             </nav>
             <div className='container page'>
                 {/* information */}
                 <div className='info'>
                     <h1><span>WorkWise</span></h1>
-
                     <h4>The preferred job tracking app</h4>
-                    
                     <p>
                     Designed to help job seekers easily track their job applications.
                     Keep a log of your applications, set reminders for follow-ups, and identify potential areas for improvement.<br/>
                     <br/>
                     By keeping all your job search information in one place, WorkWise empowers you to stay organised and focused on landing your dream job.
                     </p>
-
                     <button className='btn btn-hero'>
                         Begin your journey
                     </button>
