@@ -8,14 +8,21 @@ const initialState = {
     email: '',
     password: '',
     isMember: true,
-    showAlert: true,
+    showAlert: false,
 }
+
+// isMember is used to toggle the Name form row
 
 const Register = () => {
 
     const [values, setValues] =  useState(initialState)
 
     // global state and useNavigate
+
+    // spread out curr values, then set the control to opposite
+    const toggleMember = () => {
+        setValues({...values,isMember: !values.isMember})
+    }
 
     // logs to show which input we're working on
     const handleChange = (e) => {
@@ -62,6 +69,12 @@ const Register = () => {
                 <button type='submit' className='btn btn-block'>
                     Submit
                 </button>
+
+                <p>
+                    <button type='button' onClick={toggleMember} className='member-btn'>
+                        Register
+                    </button>
+                </p>
             </form>
         </Wrapper>
     )
