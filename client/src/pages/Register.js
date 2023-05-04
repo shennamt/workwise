@@ -25,7 +25,7 @@ const Register = () => {
 
     // logs to show which input we're working on
     const handleChange = (e) => {
-        console.log(e.target)
+        setValues({ ...values, [e.target.name]: e.target.value})
     }
 
     // looking for event Obj and log the form
