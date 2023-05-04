@@ -1,6 +1,7 @@
 import React from 'react'
 import { useReducer, useContext } from 'react'
 import reducer from './reducer'
+import { DISPLAY_ALERT } from './actions'
 
 const initialState = {
     isLoading: false,
@@ -18,9 +19,15 @@ const AppContext = React.createContext()
 const AppProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState)
 
+    // for useReducer, pass the object and must pass the type property
+    // can even provide other properties but now we stick we payload
+    const displayAlert = () => {
+        dispatch({ type: DISPLAY_ALERT })
+    }
+
     // value prop is the state value
     // render the children because it's the app duh
-    return <AppContext.Provider value={{...state}}>
+    return <AppContext.Provider value={{ ...state, displayAlert }}>
         { children }
     </AppContext.Provider>
 }
