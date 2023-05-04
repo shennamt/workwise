@@ -1,8 +1,12 @@
+import { useAppContext } from '../context/appContext'
+
 const Alert = () => {
+    // values to be provided from global context. goodbye repetition!
+    const { alertType, alertText } =  useAppContext()
+
     return (
-        <div className='alert alert-danger'>
-        {/* put other classNames for success etc later */}
-        alert text goes here
+        <div className={`alert alert-${alertType}`}>
+            {alertText}
         </div>
     )
 }
