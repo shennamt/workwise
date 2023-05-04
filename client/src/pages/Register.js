@@ -9,7 +9,6 @@ const initialState = {
     email: '',
     password: '',
     isMember: true,
-    showAlert: false,
 }
 
 const Register = () => {
@@ -17,9 +16,7 @@ const Register = () => {
     const [values, setValues] =  useState(initialState)
 
     // global state and useNavigate
-
-    const state = useAppContext()
-    console.log(state)
+    const { isLoading, showAlert } = useAppContext()
 
     // spread out curr values, then set the control to opposite
     const toggleMember = () => {
@@ -42,7 +39,7 @@ const Register = () => {
             <form className='form' onSubmit={onSubmit}>
                 <Logo />
                 <h3>{values.isMember ? 'Login' : 'Register'}</h3>
-                {values.showAlert && <Alert />}
+                {showAlert && <Alert />}
 
                 {/* name input */}
                 {!values.isMember && (
