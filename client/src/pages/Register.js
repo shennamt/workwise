@@ -43,27 +43,29 @@ const Register = () => {
                 {values.showAlert && <Alert />}
 
                 {/* name input */}
-                <FormRow
-                type='text'
-                name='name'
-                value={values.name}
-                handleChange={handleChange}
-                />
+                {!values.isMember && (
+                    <FormRow
+                        type='text'
+                        name='name'
+                        value={values.name}
+                        handleChange={handleChange}
+                    />
+                )}
 
                 {/* email input */}
                 <FormRow
-                type='email'
-                name='email'
-                value={values.email}
-                handleChange={handleChange}
+                    type='email'
+                    name='email'
+                    value={values.email}
+                    handleChange={handleChange}
                 />
 
                 {/* password input */}
                 <FormRow
-                type='password'
-                name='password'
-                value={values.password}
-                handleChange={handleChange}
+                    type='password'
+                    name='password'
+                    value={values.password}
+                    handleChange={handleChange}
                 />
 
                 <button type='submit' className='btn btn-block'>
