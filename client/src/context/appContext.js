@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState, useReducer, useContext } from 'react'
 
 const initialState = {
@@ -23,8 +24,10 @@ const AppProvider = ({ children }) => {
     </AppContext.Provider>
 }
 
-// then set up a custom hook
-// without the hook then in every component i would need to
-// import useContext and set up appContext to access the value props
+// without this custom hook, in every component i would need to
+// import useContext and set up appContext to access the value props. leceh.
+const useAppContext = () => {
+    return useContext(AppContext)
+}
 
-export { AppProvider, initialState }
+export { AppProvider, initialState, useAppContext }
