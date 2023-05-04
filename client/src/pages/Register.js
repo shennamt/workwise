@@ -34,7 +34,7 @@ const Register = () => {
                 {/* name input */}
                 <div className='form-row'>
                     <label htmlFor='name' className='form-label'>Name</label>
-                    <input type='text' value={values.name} name='name' on onChange={handleChange} className='form-input'/>
+                    <input type='text' value={values.name} name='name' onChange={handleChange} className='form-input'/>
                     <button type='submit' className='btn btn-block'>Submit</button>
                 </div>
             </form>
