@@ -16,22 +16,26 @@ const Register = () => {
     const [values, setValues] =  useState(initialState)
 
     // global state and useNavigate
-    const { isLoading, showAlert } = useAppContext()
+
+    const { isLoading, showAlert, displayAlert } = useAppContext()
 
     // spread out curr values, then set the control to opposite
     const toggleMember = () => {
         setValues({...values,isMember: !values.isMember})
     }
 
-    // logs to show which input we're working on
     const handleChange = (e) => {
-        setValues({ ...values, [e.target.name]: e.target.value})
+        setValues({...values, [e.target.name]: e.target.value})
     }
 
-    // looking for event Obj and log the form
     const onSubmit = (e) => {
         e.preventDefault()
-        console.log(e.target)
+        console.log(values)
+        const { name, email, password, isMember } = values
+        if(!email || !password || (!isMember && !name )){
+            displayAlert()
+            return
+        }
     }
 
     return (
