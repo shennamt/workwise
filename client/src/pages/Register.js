@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Logo, FormRow, Alert } from '../components'
 import Wrapper from '../assets/wrappers/RegisterPage'
+import { useAppContext } from '../context/appContext'
 
 // Default state
 const initialState = {
@@ -8,10 +9,7 @@ const initialState = {
     email: '',
     password: '',
     isMember: true,
-    showAlert: false,
 }
-
-// isMember is used to toggle the Name form row
 
 const Register = () => {
 
@@ -19,20 +17,25 @@ const Register = () => {
 
     // global state and useNavigate
 
+    const { isLoading, showAlert, displayAlert } = useAppContext()
+
     // spread out curr values, then set the control to opposite
     const toggleMember = () => {
         setValues({...values,isMember: !values.isMember})
     }
 
-    // logs to show which input we're working on
     const handleChange = (e) => {
-        console.log(e.target)
+        setValues({...values, [e.target.name]: e.target.value})
     }
 
-    // looking for event Obj and log the form
     const onSubmit = (e) => {
         e.preventDefault()
-        console.log(e.target)
+        console.log(values) // rmb to put this before return
+        const { name, email, password, isMember } = values
+        if(!email || !password || (!isMember && !name)){
+            displayAlert()
+            return
+        }
     }
 
     return (
@@ -40,7 +43,7 @@ const Register = () => {
             <form className='form' onSubmit={onSubmit}>
                 <Logo />
                 <h3>{values.isMember ? 'Login' : 'Register'}</h3>
-                {values.showAlert && <Alert />}
+                {showAlert && <Alert />}
 
                 {/* name input */}
                 {!values.isMember && (
