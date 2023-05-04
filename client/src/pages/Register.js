@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Logo, FormRow, Alert } from '../components'
 import Wrapper from '../assets/wrappers/RegisterPage'
+import { useAppContext } from '../context/appContext'
 
 // Default state
 const initialState = {
@@ -11,13 +12,14 @@ const initialState = {
     showAlert: false,
 }
 
-// isMember is used to toggle the Name form row
-
 const Register = () => {
 
     const [values, setValues] =  useState(initialState)
 
     // global state and useNavigate
+
+    const state = useAppContext()
+    console.log(state)
 
     // spread out curr values, then set the control to opposite
     const toggleMember = () => {
