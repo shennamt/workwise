@@ -1,7 +1,7 @@
 import React from 'react'
 import { useReducer, useContext } from 'react'
 import reducer from './reducer'
-import { DISPLAY_ALERT } from './actions'
+import { DISPLAY_ALERT, CLEAR_ALERT } from './actions'
 
 const initialState = {
     isLoading: false,
@@ -23,6 +23,13 @@ const AppProvider = ({ children }) => {
     // can even provide other properties but now we stick we payload
     const displayAlert = () => {
         dispatch({ type: DISPLAY_ALERT })
+        clearAlert()
+    }
+
+    const clearAlert = () => {
+        setTimeout(() => {
+            dispatch({ type: CLEAR_ALERT })
+        }, 5000)
     }
 
     // value prop is the state value
