@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Logo, FormRow } from '../components'
+import { Logo, FormRow, Alert } from '../components'
 import Wrapper from '../assets/wrappers/RegisterPage'
 
 // Default state
@@ -8,6 +8,7 @@ const initialState = {
     email: '',
     password: '',
     isMember: true,
+    showAlert: true,
 }
 
 const Register = () => {
@@ -26,12 +27,14 @@ const Register = () => {
         e.preventDefault()
         console.log(e.target)
     }
-    
+
     return (
         <Wrapper className='full-page'>
             <form className='form' onSubmit={onSubmit}>
                 <Logo />
                 <h3>Register</h3>
+                {values.showAlert && <Alert />}
+
                 {/* name input */}
                 <FormRow
                 type='text'
