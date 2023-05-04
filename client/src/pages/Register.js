@@ -27,7 +27,18 @@ const Register = () => {
         console.log(e.target)
     }
     return (
-        <h1>Register</h1>
+        <Wrapper className='full-page'>
+            <form className='form' onSubmit={onSubmit}>
+                <Logo />
+                <h3>Register</h3>
+                {/* name input */}
+                <div className='form-row'>
+                    <label htmlFor='name' className='form-label'>Name</label>
+                    <input type='text' value={values.name} name='name' on onChange={handleChange} className='form-input'/>
+                    <button type='submit' className='btn btn-block'>Submit</button>
+                </div>
+            </form>
+        </Wrapper>
     )
 }
 
