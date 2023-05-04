@@ -1,5 +1,6 @@
 import React from 'react'
-import { useState, useReducer, useContext } from 'react'
+import { useReducer, useContext } from 'react'
+import reducer from './reducer'
 
 const initialState = {
     isLoading: false,
@@ -15,7 +16,7 @@ const AppContext = React.createContext()
 // provider looks for children to render the app
 // dummy state for now
 const AppProvider = ({ children }) => {
-    const [state, setState] = useState(initialState)
+    const [state, dispatch] = useReducer(reducer, initialState)
 
     // value prop is the state value
     // render the children because it's the app duh
