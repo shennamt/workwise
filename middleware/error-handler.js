@@ -13,10 +13,12 @@ const errorHandlerMiddleware = (err, req, res, next)  => {
             .map((item) => item.message)
             .join(',')
     }
-    res.status(defaultError.statusCode).json({ msg: err })
-    // res.status(defaultError.statusCode).json({ msg: defaultError.msg })
+    if (err.code && err.code === 11000) {
+        defaultError.statusCode = StatusCodes.BAD_REQUEST
+        defaultError.msg = `The ${Object.keys(err.keyValue)} field is not unqiue`
+    }
+    // res.status(defaultError.statusCode).json({ msg: err })
+    res.status(defaultError.statusCode).json({ msg: defaultError.msg })
 }
-
-// try a unique field error handler
 
 export default errorHandlerMiddleware
