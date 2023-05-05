@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import validator from 'validator'
 
-const UserSchema = new mongoose.SchemaType({
+const UserSchema = new mongoose.Schema({
     name: {
         type: String,
         required:[true, 'Please provide your name'],
@@ -23,15 +23,10 @@ const UserSchema = new mongoose.SchemaType({
         required:[true, 'Please provide a password'],
         minlength: 6,
     },
-    password: {
-        type: String,
-        required:[true, 'Please provide a password'],
-        minlength: 6,
-    },
     location: {
         type: String,
         trim: true,
-        minlength: 20,
+        maxlength: 25,
         default: 'Singapore',
     },
 })
