@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 import validator from 'validator'
 import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
 
 const UserSchema = new mongoose.Schema({
     name: {
@@ -41,7 +42,10 @@ UserSchema.pre('save', async function() {
 })
 
 UserSchema.methods.createJWT = function () {
-    console.log(this)
+    return jwt.sign({ userId:this._id }, 'jwtSecret', { expiresIn: '1d' })
 }
+
+// {userId: this._id}
+// access payload from server only with id. dont care about everything else
 
 export default mongoose.model('User', UserSchema)
