@@ -26,7 +26,7 @@ const UserSchema = new mongoose.Schema({
     location: {
         type: String,
         trim: true,
-        minlength: 20,
+        maxlength: 25,
         default: 'Singapore',
     },
 })
