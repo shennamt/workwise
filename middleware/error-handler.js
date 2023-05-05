@@ -13,12 +13,10 @@ const errorHandlerMiddleware = (err, req, res, next)  => {
             .map((item) => item.message)
             .join(',')
     }
-    // res.status(defaultError.statusCode).json({ msg: err })
-    res.status(defaultError.statusCode).json({ msg: defaultError.msg })
+    res.status(defaultError.statusCode).json({ msg: err })
+    // res.status(defaultError.statusCode).json({ msg: defaultError.msg })
 }
 
-// right now we're sending a huge err object with the err properties which is useless
-// let send 400 since it's a bad req
-// then iterate over the err obj and grab the message only
+// try a unique field error handler
 
 export default errorHandlerMiddleware
