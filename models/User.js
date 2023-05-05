@@ -36,7 +36,7 @@ const UserSchema = new mongoose.Schema({
 // triggered in authController using .create
 // a hook that's called before saving doc
 UserSchema.pre('save', async function() {
-    const salt = await bcrypt.genSalt(10); // salt is rando string of characters
+    const salt = await bcrypt.genSalt(10); // salt is random string of characters
     this.password = await bcrypt.hash(this.password, salt)
 })
 
