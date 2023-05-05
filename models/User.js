@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import validator from 'validator'
+import bcrypt from 'bcryptjs'
 
 const UserSchema = new mongoose.Schema({
     name: {
@@ -30,5 +31,17 @@ const UserSchema = new mongoose.Schema({
         default: 'Singapore',
     },
 })
+
+// pre-save hook executed before user object is saved to db
+// triggered in authController using .create
+// a hook that's called before saving doc
+UserSchema.pre('save', async function() {
+    const salt = await bcrypt.genSalt(10); // salt is rando string of characters
+    this.password = await bcrypt.hash(this.password, salt)
+})
+
+UserSchema.methods.createJWT = function () {
+    console.log(this)
+}
 
 export default mongoose.model('User', UserSchema)
