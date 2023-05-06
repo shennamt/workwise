@@ -33,6 +33,21 @@ const reducer = (state, action) => {
         return { ...state, isLoading: true }
     }
 
+    if (action.type === REGISTER_USER_SUCCESS) {
+        return {
+            ...state,
+            isLoading: false,
+            token: action.payload.token,
+            user: action.payload.user,
+            userLocation: action.payload.location,
+            jobLocation: action.payload.location,
+            showAlert: true,
+            alertType: 'success',
+            alertText: 'Success! Redirecting...',
+
+        }
+    }
+
     // run if we dispatch action with no handler
     throw new Error(`no such action : ${action.type}`)
 }
