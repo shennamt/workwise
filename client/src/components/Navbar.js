@@ -1,13 +1,13 @@
-import Wrapper from '../assets/wrappers/NavBar'
+import Wrapper from '../assets/wrappers/Navbar'
 
-const NavBar = () => {
+const Navbar = () => {
     return (
         <Wrapper>
             <h4>
-                NavBar
+                Navbar
             </h4>
         </Wrapper>
     )
 }
 
-export default NavBar
+export default Navbar
