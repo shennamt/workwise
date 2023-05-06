@@ -24,6 +24,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required:[true, 'Please provide a password'],
         minlength: 6,
+        select: false,
     },
     location: {
         type: String,
@@ -41,6 +42,12 @@ UserSchema.pre('save', async function() {
     this.password = await bcrypt.hash(this.password, salt)
 })
 
+
+// use mongoose custom instance .methods to create JWT
+//set it up in user model but call it call it in the controller because its created there duh
+// rn im returned the password which is not ideal
+// trying to exclude the password in the res by setting an override at the query level
+// AKA SchemaType.prototype.select()
 UserSchema.methods.createJWT = function () {
     return jwt.sign(
         { userId:this._id },
