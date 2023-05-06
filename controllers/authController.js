@@ -34,6 +34,11 @@ const register = async (req, res) => {
 const login = async (req, res) => {
     res.send("login user")
 }
+// use err handler
+// check for user using email/ password
+// set up an unauth.js in errors folder
+// import/export in index.js
+// get statuscodes and customapis, then change to unauth
 
 const updateUser = async (req, res) => {
     res.send("updateUser")
