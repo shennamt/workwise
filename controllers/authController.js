@@ -14,9 +14,21 @@ const register = async (req, res) => {
         throw new BadRequestError("Email already in use")
     }
 
+    // oh but i use User create so i still get the password aiya
+    // maybe create a utils folder to create function to get specific values
+    // or... hardcode hahah chicken backside
     const user = await User.create({ name, email, password })
-    user.createJWT()
-    res.status(StatusCodes.OK).json({ user })
+    const token = user.createJWT()
+    res.status(StatusCodes.OK)
+    .json({
+        user: {
+            email:user.email,
+            location:user.location,
+            name:user.name
+        },
+        token,
+        location: user.location
+    })
 }
 
 const login = async (req, res) => {
