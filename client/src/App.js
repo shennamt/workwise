@@ -12,7 +12,7 @@ function App() {
 	return (
         <BrowserRouter>
             <Routes>
-                <Route path='/'>
+                <Route path='/' element={<SharedLayout />}>
                     <Route path='add-job' element={<AddJob />}/>
                     <Route path='all-jobs' element={<AllJobs />}/>
                     <Route path='profile' element={<Profile />}/>
