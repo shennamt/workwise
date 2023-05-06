@@ -14,8 +14,8 @@ function App() {
             <Routes>
                 <Route path='/' element={<SharedLayout />}>
                     <Route index element={<Stats />}/>
-                    <Route path='add-job' element={<AddJob />}/>
                     <Route path='all-jobs' element={<AllJobs />}/>
+                    <Route path='add-job' element={<AddJob />}/>
                     <Route path='profile' element={<Profile />}/>
                 </Route>
                 <Route path='/register' element={<Register />}/>
