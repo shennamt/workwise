@@ -12,20 +12,6 @@ const initialState = {
     isMember: true,
 }
 
-//import axios
-// dispatch reguser then handle the action by state isloading is true
-// so that the person cant submit again
-// since axios returns a promise, use async await
-// then set up a try catch for async errs
-// POST method because that's is req in server
-// rmb / cos of proxy
-// then pass in data as second argument AKA currentUser
-// maybe log res in first req just to double check lol
-//at dispatch, rmb type and pass in the payload obj
-// in reducer, set up the actions types on success and error
-// on success, add to local storage
-// dont forget err handling for reg too 
-
 const Register = () => {
     const navigate = useNavigate()
     const [values, setValues] =  useState(initialState)
