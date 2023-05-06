@@ -30,7 +30,6 @@ const Register = () => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        console.log(values) // rmb to put this before return
         const { name, email, password, isMember } = values
         if(!email || !password || (!isMember && !name)){
             displayAlert()
