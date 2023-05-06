@@ -15,7 +15,7 @@ const initialState = {
 const Register = () => {
     const navigate = useNavigate()
     const [values, setValues] =  useState(initialState)
-    const { user, isLoading, showAlert, displayAlert, registerUser } = useAppContext()
+    const { user, isLoading, showAlert, displayAlert, registerUser, loginUser } = useAppContext()
 
     // spread out curr values, then set the control to opposite
     const toggleMember = () => {
@@ -35,7 +35,7 @@ const Register = () => {
         }
         const currentUser = { name, email, password }
         if (isMember){
-            console.log("already member")
+            loginUser(currentUser)
         } else {
             registerUser(currentUser)
         }
