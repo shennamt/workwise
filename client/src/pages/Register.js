@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Logo, FormRow, Alert } from '../components'
 import Wrapper from '../assets/wrappers/RegisterPage'
 import { useAppContext } from '../context/appContext'
+import { useNavigate } from 'react-router-dom'
 
 // Default state
 const initialState = {
@@ -12,12 +13,9 @@ const initialState = {
 }
 
 const Register = () => {
-
+    const navigate = useNavigate()
     const [values, setValues] =  useState(initialState)
-
-    // global state and useNavigate
-
-    const { isLoading, showAlert, displayAlert } = useAppContext()
+    const { user, isLoading, showAlert, displayAlert, registerUser } = useAppContext()
 
     // spread out curr values, then set the control to opposite
     const toggleMember = () => {
@@ -30,13 +28,27 @@ const Register = () => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        console.log(values) // rmb to put this before return
         const { name, email, password, isMember } = values
         if(!email || !password || (!isMember && !name)){
             displayAlert()
             return
         }
+        const currentUser = { name, email, password }
+        if (isMember){
+            console.log("already member")
+        } else {
+            registerUser(currentUser)
+        }
     }
+
+    // in the dependency arr it shows that it will be invoked in init render + each time user or nav changes
+    useEffect(() => {
+        if (user) {
+            setTimeout(() => {
+                navigate('/')
+            }, 3000)
+        }
+    }, [user, navigate])
 
     return (
         <Wrapper className='full-page'>
@@ -71,7 +83,7 @@ const Register = () => {
                     handleChange={handleChange}
                 />
 
-                <button type='submit' className='btn btn-block'>
+                <button type='submit' className='btn btn-block' disabled={isLoading}>
                     Submit
                 </button>
 
