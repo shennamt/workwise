@@ -24,10 +24,7 @@ const initialState = {
 
 const AppContext = React.createContext()
 
-// context has 2 components - provider and consumer.
-// not using consumer but need to set up new component app provider
 // provider looks for children to render the app
-// dummy state for now
 const AppProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState)
 
@@ -42,6 +39,18 @@ const AppProvider = ({ children }) => {
         setTimeout(() => {
             dispatch({ type: CLEAR_ALERT })
         }, 5000)
+    }
+
+    const addUserToLocalStorage = ({ user, token, location }) => {
+        localStorage.setItem('user', JSON.stringify(user))
+        localStorage.setItem('token', token)
+        localStorage.setItem('location', location)
+    }
+
+    const removeUserFromLocalStorage = () => {
+        localStorage.removeItem('user')
+        localStorage.removeItem('token')
+        localStorage.removeItem('location')
     }
 
     const registerUser = async (currentUser) => {
@@ -71,7 +80,7 @@ const AppProvider = ({ children }) => {
 }
 
 // without this custom hook, in every component i would need to
-// import useContext and set up appContext to access the value props. leceh.
+// import useContext and set up appContext to access the value props.
 const useAppContext = () => {
     return useContext(AppContext)
 }
