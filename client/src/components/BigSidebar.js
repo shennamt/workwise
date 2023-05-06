@@ -4,7 +4,7 @@ const BigSidebar = () => {
     return (
         <Wrapper>
             <h4>
-                big side bar
+                BigSidebar
             </h4>
         </Wrapper>
     )

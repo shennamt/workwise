@@ -4,7 +4,7 @@ const SmallSidebar = () => {
     return (
         <Wrapper>
             <h4>
-                small side bar
+                SmallSidebar
             </h4>
         </Wrapper>
     )
