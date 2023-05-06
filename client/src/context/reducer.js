@@ -11,7 +11,7 @@ const reducer = (state, action) => {
     // return state but modify show alert
     // change alert type to danger
     // change alert text
-    if (action.type === DISPLAY_ALERT){
+    if (action.type === DISPLAY_ALERT) {
         return {
             ...state,
             showAlert: true,
@@ -20,7 +20,7 @@ const reducer = (state, action) => {
         }
     }
 
-    if (action.type === CLEAR_ALERT){
+    if (action.type === CLEAR_ALERT) {
         return {
             ...state,
             showAlert: false,
@@ -28,6 +28,11 @@ const reducer = (state, action) => {
             alertText: '',
         }
     }
+
+    if (action.type === REGISTER_USER_BEGIN) {
+        return { ...state, isLoading: true }
+    }
+
     // run if we dispatch action with no handler
     throw new Error(`no such action : ${action.type}`)
 }
