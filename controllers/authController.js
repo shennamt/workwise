@@ -39,6 +39,10 @@ const login = async (req, res) => {
 // set up an unauth.js in errors folder
 // import/export in index.js
 // get statuscodes and customapis, then change to unauth
+// set up instance method on user doc for compare password
+// check for user, if !user, throw invalid credentials
+// if user, compare password. use bcrypt.compare
+// RMB it returns a promise so like. dont forget to use await async ya. and no hashing here obv.
 
 const updateUser = async (req, res) => {
     res.send("updateUser")
