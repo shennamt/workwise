@@ -1,6 +1,6 @@
 import User from '../models/User.js'
 import { StatusCodes } from 'http-status-codes'
-import { BadRequestError } from '../errors/index.js'
+import { BadRequestError, UnAuthenticatedError } from '../errors/index.js'
 
 const register = async (req, res) => {
     const { name, email, password } = req.body
@@ -32,17 +32,21 @@ const register = async (req, res) => {
 }
 
 const login = async (req, res) => {
+    const { email, password } = req.body
+    if (!email || !password) {
+        throw new BadRequestError("Did you forget an input?")
+    }
+    const user = await User.findOne({ email }).select('+password')
+    if (!user) {
+        throw new UnAuthenticatedError("Invalid credentials")
+    }
+    console.log(user)
+    const isPasswordCorrect = await user.comparePassword(password)
+    if (!isPasswordCorrect) {
+        throw new UnAuthenticatedError("Invalid credentials")
+    }
     res.send("login user")
 }
-// use err handler
-// check for user using email/ password
-// set up an unauth.js in errors folder
-// import/export in index.js
-// get statuscodes and customapis, then change to unauth
-// set up instance method on user doc for compare password
-// check for user, if !user, throw invalid credentials
-// if user, compare password. use bcrypt.compare
-// RMB it returns a promise so like. dont forget to use await async ya. and no hashing here obv.
 
 const updateUser = async (req, res) => {
     res.send("updateUser")
