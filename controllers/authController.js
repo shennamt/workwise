@@ -19,8 +19,7 @@ const register = async (req, res) => {
     // or... hardcode hahah chicken backside
     const user = await User.create({ name, email, password })
     const token = user.createJWT()
-    res.status(StatusCodes.OK)
-    .json({
+    res.status(StatusCodes.CREATED).json({
         user: {
             email:user.email,
             location:user.location,
@@ -40,12 +39,18 @@ const login = async (req, res) => {
     if (!user) {
         throw new UnAuthenticatedError("Invalid credentials")
     }
-    console.log(user)
+
     const isPasswordCorrect = await user.comparePassword(password)
     if (!isPasswordCorrect) {
         throw new UnAuthenticatedError("Invalid credentials")
     }
-    res.send("login user")
+    const token = user.createJWT()
+    user.password = undefined
+    res.status(StatusCodes.OK).json({
+        user,
+        token,
+        location: user.location
+    })
 }
 
 const updateUser = async (req, res) => {
