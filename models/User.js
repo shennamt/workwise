@@ -42,7 +42,6 @@ UserSchema.pre('save', async function() {
     this.password = await bcrypt.hash(this.password, salt)
 })
 
-
 // use mongoose custom instance .methods to create JWT
 //set it up in user model but call it call it in the controller because its created there duh
 // rn im returned the password which is not ideal
@@ -52,10 +51,13 @@ UserSchema.methods.createJWT = function () {
     return jwt.sign(
         { userId:this._id },
         process.env.JWT_SECRET,
-        { expiresIn: process.env.JWT_LIFETIME })
+        { expiresIn: process.env.JWT_LIFETIME
+    })
 }
 
-// {userId: this._id}
-// access payload from server only with id. dont care about everything else
+UserSchema.methods.comparePassword = async function(candidatePassword) {
+    const isMatch = await bcrypt.compare(candidatePassword, this.password)
+    return isMatch
+}
 
 export default mongoose.model('User', UserSchema)
