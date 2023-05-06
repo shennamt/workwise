@@ -17,7 +17,7 @@ const Register = () => {
 
     // global state and useNavigate
 
-    const { isLoading, showAlert, displayAlert } = useAppContext()
+    const { isLoading, showAlert, displayAlert, registerUser } = useAppContext()
 
     // spread out curr values, then set the control to opposite
     const toggleMember = () => {
@@ -36,6 +36,13 @@ const Register = () => {
             displayAlert()
             return
         }
+        const currentUser = { name, email, password }
+        if (isMember){
+            console.log("already member")
+        } else {
+            registerUser(currentUser)
+        }
+        console.log(values)
     }
 
     return (
@@ -71,7 +78,7 @@ const Register = () => {
                     handleChange={handleChange}
                 />
 
-                <button type='submit' className='btn btn-block'>
+                <button type='submit' className='btn btn-block' disabled={isLoading}>
                     Submit
                 </button>
 
