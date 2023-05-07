@@ -87,6 +87,9 @@ const AppProvider = ({ children }) => {
     const updateUser = async (currentUser) => {
         console.log(currentUser)
     }
+    // manual approach. patch to URL
+    // pass in currentUser
+    // third argument, pass in authorization with token which is located in state
 
     return (
         <AppContext.Provider
