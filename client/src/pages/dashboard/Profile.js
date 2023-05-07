@@ -11,10 +11,10 @@ const Profile = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if(!name || !email || !location){
-            displayAlert()
-            return
-        }
+        // if(!name || !email || !location) {
+        //     displayAlert()
+        //     return
+        // }
         updateUser({ name, email, location })
     }
 
