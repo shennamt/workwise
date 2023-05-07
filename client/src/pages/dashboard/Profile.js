@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { FormRow, Alert } from '../../components'
 import { useAppContext } from '../../context/appContext'
+import Wrapper from '../../assets/wrappers/DashboardFormPage'
 
 const Profile = () => {
     const { user, showAlert, displayAlert, updateUser, isLoading } = useAppContext()
@@ -14,7 +15,8 @@ const Profile = () => {
     }
 
     return (
-        <form className='form' onSubmit={handleSubmit}>
+        <Wrapper>
+            <form className='form' onSubmit={handleSubmit}>
             <h3>Profile</h3>
             {showAlert && <Alert />}
             <div className='form-center'>
@@ -40,7 +42,8 @@ const Profile = () => {
                     { isLoading ? 'Loading...' : 'Save Changes' }
                 </button>
             </div>
-        </form>
+            </form>
+        </Wrapper>
     )
 }
 
