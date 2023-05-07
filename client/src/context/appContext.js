@@ -10,6 +10,9 @@ import {
     SETUP_USER_ERROR,
     TOGGLE_SIDEBAR,
     LOGOUT_USER,
+    UPDATE_USER_BEGIN,
+    UPDATE_USER_SUCCESS,
+    UPDATE_USER_ERROR,
 } from './actions'
 
 const user = localStorage.getItem('user')
@@ -109,15 +112,23 @@ const AppProvider = ({ children }) => {
     }
 
     const updateUser = async (currentUser) => {
+        dispatch({ type: UPDATE_USER_BEGIN })
         try {
             const { data } = await authFetch.patch('/auth/updateUser', currentUser)
-            console.log(data)
-        } catch (error) {
-            // console.log(error.response)
-        }
-    }
-    // curr approach doesn't let me handle 400/401 errs so let's do an interceptor
+            const { user, location, token } = data
 
+            dispatch({
+                type: UPDATE_USER_SUCCESS,
+                payload: { user, location, token },
+            })
+            addUserToLocalStorage({ user, location, token })
+        } catch (error) {
+            dispatch({
+                type: UPDATE_USER_ERROR,
+                payload: {msg: error.response.data.msg } })
+        }
+        clearAlert()
+    }
 
     return (
         <AppContext.Provider
