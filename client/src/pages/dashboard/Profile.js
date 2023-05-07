@@ -11,7 +11,11 @@ const Profile = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log("update user")
+        if(!name || !email || !location){
+            displayAlert()
+            return
+        }
+        updateUser({ name, email, location })
     }
 
     return (
