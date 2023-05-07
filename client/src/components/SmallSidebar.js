@@ -1,14 +1,16 @@
 import Wrapper from '../assets/wrappers/SmallSidebar'
 import { FaTimes } from 'react-icons/fa'
-import Logo from './Logo'
 import links from '../utils/links'
 import { useAppContext } from '../context/appContext'
 import { NavLink } from 'react-router-dom'
 
 const SmallSidebar = () => {
+
+    const { showSidebar, toggleSidebar } = useAppContext()
+
     return (
         <Wrapper>
-            <div className='sidebar-container show-sidebar'>
+            <div className={ showSidebar ? 'sidebar-container show-sidebar' : 'sidebar-container'}>
                 <div className='content'>
                     <button type='button' className='close-btn' onClick={() => {console.log('toggling sidebar')}}>
                         <FaTimes />

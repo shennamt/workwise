@@ -4,12 +4,6 @@ const Wrapper = styled.aside`
     @media (min-width: 992px) {
         display: none;
     }
-    h3 {
-        font-weight: 700;
-        span {
-            color: var(--primary-500);
-        }
-    }
     .sidebar-container {
         position: fixed;
         inset: 0;
@@ -43,7 +37,7 @@ const Wrapper = styled.aside`
         background: transparent;
         border-color: transparent;
         font-size: 2rem;
-        color: var(--red-dark);
+        color: var(--primary-800);
         cursor: pointer;
     }
     .nav-links {
@@ -77,6 +71,12 @@ const Wrapper = styled.aside`
     }
     .active .icon {
         color: var(--primary-500);
+    }
+    h3 {
+        font-weight: 700;
+        span {
+            color: var(--primary-500);
+        }
     }
 `
 export default Wrapper
