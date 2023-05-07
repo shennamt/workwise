@@ -54,8 +54,24 @@ const login = async (req, res) => {
 }
 
 const updateUser = async (req, res) => {
-    console.log(req.user)
-    res.send("updateUser")
+    const { email, name, location } = req.body
+    if (!email || !name || !location ) {
+        throw new BadRequestError('Oops.. did you forget an input?')
+    }
+    const user = await User.findOne({ _id: req.user.userId })
+
+    user.email = email
+    user.name = name
+    user.location = location
+
+    await user.save()
+
+    const token = user.createJWT()
+    res.status(StatusCodes.OK).json({
+        user,
+        token,
+        location: user.location
+    })
 }
 
 export { register, login, updateUser }
