@@ -41,7 +41,7 @@ const AppProvider = ({ children }) => {
 
     authFetch.interceptors.request.use(
         (config) => {
-            // config.headers['Authorization'] = `Bearer ${state.token}`
+            config.headers['Authorization'] = `Bearer ${state.token}`
             return config
         }, (error) => {
             return Promise.reject(error)
@@ -52,7 +52,7 @@ const AppProvider = ({ children }) => {
         (response) => {
             return response
         }, (error) => {
-            console.log(error.response)
+            // console.log(error.response)
             if(error.response.status === 401){
                 logoutUser()
             }
@@ -123,10 +123,12 @@ const AppProvider = ({ children }) => {
             })
             addUserToLocalStorage({ user, location, token })
         } catch (error) {
-            if(error.response.status !== 401)
-            dispatch({
-                type: UPDATE_USER_ERROR,
-                payload: {msg: error.response.data.msg } })
+            if(error.response.status !== 401) {
+                dispatch({
+                    type: UPDATE_USER_ERROR,
+                    payload: {msg: error.response.data.msg }
+                })
+            }
         }
         clearAlert()
     }
