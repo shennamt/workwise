@@ -84,9 +84,23 @@ const AppProvider = ({ children }) => {
         removeUserFromLocalStorage()
     }
 
-    return <AppContext.Provider value={{ ...state, displayAlert, setupUser, toggleSidebar, logoutUser }}>
-        { children }
-    </AppContext.Provider>
+    const updateUser = async (currentUser) => {
+        console.log(currentUser)
+    }
+
+    return (
+        <AppContext.Provider
+            value={{
+                ...state,
+                displayAlert,
+                setupUser,
+                toggleSidebar,
+                logoutUser,
+                updateUser
+            }}>
+                { children }
+        </AppContext.Provider>
+    )
 }
 
 // without this custom hook, in every component i would need to
