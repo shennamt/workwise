@@ -16,12 +16,17 @@ const SmallSidebar = () => {
                         <FaTimes />
                     </button>
                     <h3><span>WorkWise</span></h3>
-                    <div className='nav-links'>nav links</div>
-                    {/* next step:
-                    add the rest of the links
-                    use nav link to route them
-                    make sure the small side bar closes on route
-                    do it through the toggle */}
+                    <div className='nav-links'>
+                        {links.map((link) => {
+                            const { text, path, id, icon } = link
+
+                            return <NavLink to={path} key={id} onClick={toggleSidebar}>
+                                <span className='icon'>{icon}</span>
+                                {text}
+                            </NavLink>
+                        })}
+                    </div>
+   
                 </div>
             </div>
         </Wrapper>
