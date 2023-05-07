@@ -41,7 +41,7 @@ const AppProvider = ({ children }) => {
 
     authFetch.interceptors.request.use(
         (config) => {
-            config.headers['Authorization'] = `Bearer ${state.token}`
+            // config.headers['Authorization'] = `Bearer ${state.token}`
             return config
         }, (error) => {
             return Promise.reject(error)
@@ -54,7 +54,7 @@ const AppProvider = ({ children }) => {
         }, (error) => {
             console.log(error.response)
             if(error.response.status === 401){
-                console.log('auth error')
+                logoutUser()
             }
             return Promise.reject(error)
         }
