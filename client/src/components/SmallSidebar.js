@@ -12,7 +12,7 @@ const SmallSidebar = () => {
         <Wrapper>
             <div className={ showSidebar ? 'sidebar-container show-sidebar' : 'sidebar-container'}>
                 <div className='content'>
-                    <button type='button' className='close-btn' onClick={() => {console.log('toggling sidebar')}}>
+                    <button type='button' className='close-btn' onClick={toggleSidebar}>
                         <FaTimes />
                     </button>
                     <h3><span>WorkWise</span></h3>
