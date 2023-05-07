@@ -15,7 +15,7 @@ const Navbar = () => {
                 <button
                     type='button'
                     className='toggle-btn'
-                    onClick={toggleSidebar}
+                    onClick={ toggleSidebar }
                 >
                     <FaAlignLeft />
                 </button>
