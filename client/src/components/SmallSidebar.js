@@ -13,6 +13,8 @@ const SmallSidebar = () => {
                     <button type='button' className='close-btn' onClick={() => {console.log('toggling sidebar')}}>
                         <FaTimes />
                     </button>
+                    <h3><span>WorkWise</span></h3>
+                    <div className='nav-links'>nav links</div>
                 </div>
             </div>
         </Wrapper>

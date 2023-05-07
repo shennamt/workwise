@@ -4,6 +4,12 @@ const Wrapper = styled.aside`
     @media (min-width: 992px) {
         display: none;
     }
+    h3 {
+        font-weight: 700;
+        span {
+            color: var(--primary-500);
+        }
+    }
     .sidebar-container {
         position: fixed;
         inset: 0;
