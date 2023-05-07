@@ -34,10 +34,28 @@ const AppProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState)
     const authFetch = axios.create({
         baseURL:'/api/v1',
-        headers: {
-            Authorization: `Bearer ${state.token}`,
-        }
     })
+
+    authFetch.interceptors.request.use(
+        (config) => {
+            config.headers['Authorization'] = `Bearer ${state.token}`
+            return config
+        }, (error) => {
+            return Promise.reject(error)
+        }
+    )
+
+    authFetch.interceptors.response.use(
+        (response) => {
+            return response
+        }, (error) => {
+            console.log(error.response)
+            if(error.response.status === 401){
+                console.log('auth error')
+            }
+            return Promise.reject(error)
+        }
+    )
 
     const displayAlert = () => {
         dispatch({ type: DISPLAY_ALERT })
@@ -95,9 +113,11 @@ const AppProvider = ({ children }) => {
             const { data } = await authFetch.patch('/auth/updateUser', currentUser)
             console.log(data)
         } catch (error) {
-            console.log(error.response)
+            // console.log(error.response)
         }
     }
+    // curr approach doesn't let me handle 400/401 errs so let's do an interceptor
+
 
     return (
         <AppContext.Provider
