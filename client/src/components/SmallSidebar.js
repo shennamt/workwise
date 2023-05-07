@@ -17,6 +17,11 @@ const SmallSidebar = () => {
                     </button>
                     <h3><span>WorkWise</span></h3>
                     <div className='nav-links'>nav links</div>
+                    {/* next step:
+                    add the rest of the links
+                    use nav link to route them
+                    make sure the small side bar closes on route
+                    do it through the toggle */}
                 </div>
             </div>
         </Wrapper>
