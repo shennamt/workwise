@@ -22,12 +22,12 @@ const JobsContainer = () => {
     }
     return (
         <Wrapper>
-            <h3>{totalJobs} job{jobs.length > 1 && 's'} found</h3>
+            <h5>{totalJobs} job{jobs.length > 1 && 's'} found</h5>
             <div className='jobs'>
                 {jobs.map((job) => {
-                    return <Job key={job._id}{...job} />
+                    return <Job key={job._id} {...job} />
                 })}
-
+                {/* dont forget pagination */}
             </div>
         </Wrapper>
     )
