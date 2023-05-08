@@ -23,6 +23,12 @@ const JobsContainer = () => {
     return (
         <Wrapper>
             <h3>{totalJobs} job{jobs.length > 1 && 's'} found</h3>
+            <div className='jobs'>
+                {jobs.map((job) => {
+                    return <Job key={job._id}{...job} />
+                })}
+
+            </div>
         </Wrapper>
     )
 }
