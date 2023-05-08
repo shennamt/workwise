@@ -135,6 +135,29 @@ const reducer = (state, action) => {
         }
     }
 
+    if (action.type === CREATE_JOB_BEGIN) {
+        return { ...state, isLoading:true }
+    }
+
+    if (action.type === CREATE_JOB_SUCCESS) {
+        return {
+            ...state,
+            isLoading: false,
+            showAlert: true,
+            alertType: 'success',
+            alertText: 'new job created',
+        }
+    }
+
+    if (action.type === CREATE_JOB_ERROR) {
+        return {
+            ...state,
+            isLoading: false,
+            showAlert: true,
+            alertType: 'danger',
+            alertText: action.payload.msg,
+        }
+    }
     // run if we dispatch action with no handler
     throw new Error(`no such action : ${action.type}`)
 }
