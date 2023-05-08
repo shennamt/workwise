@@ -16,13 +16,14 @@ const JobsContainer = () => {
     if (jobs.length === 0) {
         return (
             <Wrapper>
-                <h3>No jobs to display yet, create one in the Navigation Bar!</h3>
+                <h5>No jobs to display yet...</h5>
             </Wrapper>
         )
     }
     return (
-        <div>
-        </div>
+        <Wrapper>
+            <h3>{totalJobs} job{jobs.length > 1 && 's'} found</h3>
+        </Wrapper>
     )
 }
 
