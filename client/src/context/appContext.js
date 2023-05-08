@@ -37,7 +37,6 @@ const initialState = {
     editJobId: '',
     company: '',
     position: '',
-    notes:'',
     jobLocation: userLocation || '',
     jobTypeOptions: ['full-time', 'part-time', 'internship', 'contract'],
     jobType: 'full-time',
@@ -45,6 +44,7 @@ const initialState = {
     jobStyle: 'on-site',
     statusOptions: ['interview', 'declined', 'pending'],
     status: 'pending',
+    notes:'',
 }
 
 const AppContext = React.createContext()
