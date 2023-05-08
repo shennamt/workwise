@@ -32,7 +32,7 @@ const JobSchema = new mongoose.Schema(
             default: 'Singapore',
             required: true,
         },
-        jobInfo: {
+        notes: {
             type: String,
             default: 'Singapore',
             maxlength: 500,

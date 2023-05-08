@@ -13,6 +13,11 @@ import {
     UPDATE_USER_BEGIN,
     UPDATE_USER_SUCCESS,
     UPDATE_USER_ERROR,
+    HANDLE_CHANGE,
+    CLEAR_VALUES,
+    CREATE_JOB_BEGIN,
+    CREATE_JOB_SUCCESS,
+    CREATE_JOB_ERROR,
 } from './actions'
 
 const user = localStorage.getItem('user')
@@ -27,8 +32,19 @@ const initialState = {
     user: user ? JSON.parse(user) : null,
     token: token,
     userLocation: userLocation || '',
-    jobLocation: userLocation || '',
     showSidebar: false,
+    isEditing: false,
+    editJobId: '',
+    company: '',
+    position: '',
+    notes:'',
+    jobLocation: userLocation || '',
+    jobTypeOptions: ['full-time', 'part-time', 'internship', 'contract'],
+    jobType: 'full-time',
+    jobStyleOptions: ['remote', 'hybrid', 'on-site'],
+    jobStyle: 'on-site',
+    statusOptions: ['interview', 'declined', 'pending'],
+    status: 'pending',
 }
 
 const AppContext = React.createContext()
@@ -133,6 +149,39 @@ const AppProvider = ({ children }) => {
         clearAlert()
     }
 
+    const handleChange = ({ name, value }) => {
+        dispatch({ type: HANDLE_CHANGE, payload: { name, value } })
+    }
+
+    const clearValues = () => {
+        dispatch({ type: CLEAR_VALUES })
+    }
+
+    const createJob = async () => {
+        dispatch({ type: CREATE_JOB_BEGIN })
+        try {
+            const { position, company, jobLocation, jobType, jobStyle, status, notes } = state
+            await authFetch.post('/jobs', {
+                position,
+                company,
+                jobLocation,
+                jobType,
+                jobStyle,
+                status,
+                notes,
+            })
+            dispatch({ type: CREATE_JOB_SUCCESS })
+            dispatch({ type: CLEAR_VALUES })
+        } catch (error) {
+            if (error.response.status === 401) return
+            dispatch({
+                type: CREATE_JOB_ERROR,
+                payload:{ msg: error.response.data.msg }
+            })
+        }
+        clearAlert()
+    }
+
     return (
         <AppContext.Provider
             value={{
@@ -141,7 +190,10 @@ const AppProvider = ({ children }) => {
                 setupUser,
                 toggleSidebar,
                 logoutUser,
-                updateUser
+                updateUser,
+                handleChange,
+                clearValues,
+                createJob,
             }}>
                 { children }
         </AppContext.Provider>

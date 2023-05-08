@@ -9,6 +9,11 @@ import {
     UPDATE_USER_BEGIN,
     UPDATE_USER_SUCCESS,
     UPDATE_USER_ERROR,
+    HANDLE_CHANGE,
+    CLEAR_VALUES,
+    CREATE_JOB_BEGIN,
+    CREATE_JOB_SUCCESS,
+    CREATE_JOB_ERROR,
 } from './actions'
 
 import { initialState } from './appContext'
@@ -105,6 +110,54 @@ const reducer = (state, action) => {
         }
     }
 
+    if (action.type === HANDLE_CHANGE) {
+        return {
+            ...state,
+            [action.payload.name]: action.payload.value,
+        }
+    }
+
+    if (action.type === CLEAR_VALUES) {
+        const initialState = {
+            isEditing: false,
+            editJobId: '',
+            company: '',
+            position: '',
+            notes:'',
+            jobLocation: state.userLocation,
+            jobType: 'full-time',
+            jobStyle: 'on-site',
+            status: 'pending',
+        }
+        return {
+            ...state,
+            ...initialState,
+        }
+    }
+
+    if (action.type === CREATE_JOB_BEGIN) {
+        return { ...state, isLoading:true }
+    }
+
+    if (action.type === CREATE_JOB_SUCCESS) {
+        return {
+            ...state,
+            isLoading: false,
+            showAlert: true,
+            alertType: 'success',
+            alertText: 'new job created',
+        }
+    }
+
+    if (action.type === CREATE_JOB_ERROR) {
+        return {
+            ...state,
+            isLoading: false,
+            showAlert: true,
+            alertType: 'danger',
+            alertText: action.payload.msg,
+        }
+    }
     // run if we dispatch action with no handler
     throw new Error(`no such action : ${action.type}`)
 }
