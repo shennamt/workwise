@@ -1,6 +1,11 @@
+import { JobsContainer, SearchContainer } from '../../components'
+
 const AllJobs = () => {
     return (
-        <h1>AllJobs page</h1>
+        <>
+        <SearchContainer />
+        <JobsContainer />
+        </>
     )
 }
 
