@@ -9,9 +9,19 @@ const JobsContainer = () => {
     useEffect(() => {
         getJobs()
     }, [])
+    if (isLoading) {
+        return <Loading center/>
+    }
+
+    if (jobs.length === 0) {
+        return (
+            <Wrapper>
+                <h3>No jobs to display yet, create one in the Navigation Bar!</h3>
+            </Wrapper>
+        )
+    }
     return (
         <div>
-            <Loading center/>
         </div>
     )
 }
