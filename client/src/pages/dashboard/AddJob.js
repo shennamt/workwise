@@ -9,7 +9,7 @@ const AddJob = () => {
         displayAlert,
         position,
         company,
-        jobInfo,
+        notes,
         jobLocation,
         jobType,
         jobTypeOptions,
@@ -63,7 +63,7 @@ const AddJob = () => {
                         handleChange={handleJobInput}
                         list={jobStyleOptions}
                     />
-                    <FormRow type='text' labelText='Job Info' name='jobInfo' value={jobInfo} handleChange={handleJobInput} />
+                    <FormRow type='text' name='notes' value={notes} handleChange={handleJobInput} />
                     <div className='btn-container'>
                         <button type='submit' className='btn btn-block submit-btn' onClick={handleSubmit}>submit</button>
                     </div>
@@ -72,13 +72,5 @@ const AddJob = () => {
         </Wrapper>
     )
 }
-// import formRow, alert, useAppContext, wrapper
-// pass in showAlert, displayAlert, position,etc etc
-// do a handleSubmit
-// handle job input
-// then in the return, do the form rows
-// use isEditing to toggle between edit and add job ya
-// submit button... maybe a clear button too
-
 
 export default AddJob

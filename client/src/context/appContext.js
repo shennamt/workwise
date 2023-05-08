@@ -32,7 +32,7 @@ const initialState = {
     editJobId: '',
     company: '',
     position: '',
-    jobInfo:'',
+    notes:'',
     jobLocation: userLocation || '',
     jobTypeOptions: ['full-time', 'part-time', 'internship', 'contract'],
     jobType: 'full-time',
