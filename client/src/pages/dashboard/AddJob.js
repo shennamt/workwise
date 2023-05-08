@@ -49,9 +49,20 @@ const AddJob = () => {
                         handleChange={handleJobInput}
                         list={statusOptions}
                     />
-                    {/* jobtype */}
-                    {/* job style */}
-                    {/* job status */}
+                    <FormRowSelect
+                        name='jobType'
+                        labelText='Job Type'
+                        value={jobType}
+                        handleChange={handleJobInput}
+                        list={jobTypeOptions}
+                    />
+                    <FormRowSelect
+                        name='jobStyle'
+                        labelText='Job Style'
+                        value={jobStyle}
+                        handleChange={handleJobInput}
+                        list={jobStyleOptions}
+                    />
                     <FormRow type='text' labelText='Job Info' name='jobInfo' value={jobInfo} handleChange={handleJobInput} />
                     <div className='btn-container'>
                         <button type='submit' className='btn btn-block submit-btn' onClick={handleSubmit}>submit</button>
