@@ -204,8 +204,9 @@ const AppProvider = ({ children }) => {
                 },
             })
         } catch (error) {
-
+            console.log(error.response)
         }
+        clearAlert()
     }
 
     return (
