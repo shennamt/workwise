@@ -1,4 +1,4 @@
-import { FormRow, Alert } from '../../components'
+import { FormRow, FormRowSelect, Alert } from '../../components'
 import { useAppContext } from '../../context/appContext'
 import Wrapper from '../../assets/wrappers/DashboardFormPage'
 
@@ -42,23 +42,17 @@ const AddJob = () => {
                 <div className='form-center'>
                     <FormRow type='text' name='position' value={position} handleChange={handleJobInput} />
                     <FormRow type='text' name='company' value={company} handleChange={handleJobInput} />
-                    <FormRow type='text' labelText='Job Info' name='jobInfo' value={jobInfo} handleChange={handleJobInput} />
                     <FormRow type='text' labelText='Job Location' name='jobLocation' value={jobLocation} handleChange={handleJobInput} />
+                    <FormRowSelect
+                        name='status'
+                        value={status}
+                        handleChange={handleJobInput}
+                        list={statusOptions}
+                    />
                     {/* jobtype */}
-                    <div className='form-row'>
-                        <label htmlFor='jobType' className='form-label'>
-                            job type
-                        </label>
-                        <select name='jobType' value={jobType} onChange={handleJobInput} className='form-select'>
-                            {jobTypeOptions.map((itemValue, index) => {
-                                return <option key={index} value={itemValue}>
-                                    {itemValue}
-                                </option>
-                            })}
-                        </select>
-                    </div>
                     {/* job style */}
                     {/* job status */}
+                    <FormRow type='text' labelText='Job Info' name='jobInfo' value={jobInfo} handleChange={handleJobInput} />
                     <div className='btn-container'>
                         <button type='submit' className='btn btn-block submit-btn' onClick={handleSubmit}>submit</button>
                     </div>
