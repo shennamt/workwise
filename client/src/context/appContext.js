@@ -13,6 +13,7 @@ import {
     UPDATE_USER_BEGIN,
     UPDATE_USER_SUCCESS,
     UPDATE_USER_ERROR,
+    HANDLE_CHANGE,
 } from './actions'
 
 const user = localStorage.getItem('user')
@@ -144,6 +145,10 @@ const AppProvider = ({ children }) => {
         clearAlert()
     }
 
+    const handleChange = ({ name, value }) => {
+        dispatch({ type: HANDLE_CHANGE, payload: { name, value } })
+    }
+
     return (
         <AppContext.Provider
             value={{
@@ -152,7 +157,8 @@ const AppProvider = ({ children }) => {
                 setupUser,
                 toggleSidebar,
                 logoutUser,
-                updateUser
+                updateUser,
+                handleChange,
             }}>
                 { children }
         </AppContext.Provider>
