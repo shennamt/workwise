@@ -69,6 +69,25 @@ const Wrapper = styled.article`
             grid-template-columns: 1fr 1fr;
         }
     }
+    .content-center-notes {
+        background: var(--primary-100);
+        margin-top: 1rem;
+        padding-top: 0.2rem;
+        padding-bottom: 0.5rem;
+        line-height: 1.5;
+        .text {
+            text-transform: none;
+        }
+        @media (min-width: 576px) {
+            grid-template-columns: 1fr 1fr;
+        }
+        @media (min-width: 992px) {
+            grid-template-columns: 1fr;
+        }
+        @media (min-width: 1120px) {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
     .status {
         border-radius: var(--borderRadius);
         text-transform: capitalize;
