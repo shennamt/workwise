@@ -64,6 +64,7 @@ const showStats = async (req, res) => {
 	let stats = await Job.aggregate([
 		// in mongoose 7, need the "new" lol. was getting err in postman
 		{ $match: { createdBy: new mongoose.Types.ObjectId(req.user.userId) } },
+		{ $group: { _id: '$status', count: { $sum: 1 } } },
 	])
 	res.status(StatusCodes.OK).json({ stats })
 }
