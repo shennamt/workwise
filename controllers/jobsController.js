@@ -7,6 +7,7 @@ import {
 } from '../errors/index.js'
 import checkPermissions from '../utils/checkPermissions.js'
 import mongoose from 'mongoose'
+import moment from 'moment'
 
 const createJob = async (req, res) => {
 	const { position, company } = req.body
@@ -85,14 +86,31 @@ const showStats = async (req, res) => {
 				_id: {
 					year: { $year: '$createdAt' },
 					month: { $month: '$createdAt' },
-					count: { $sum: 1 },
 				},
+				count: { $sum: 1 },
 			},
 		},
 		{ $sort: { '_id.year': -1, '_id.month': -1 } },
 		{ $limit: 12 },
 	])
-	res.status(StatusCodes.OK).json({ defaultStats, monthlyApplications })
+	monthlyApplications = monthlyApplications
+		.map((item) => {
+			const {
+				_id: { year, month },
+				count,
+			} = item
+			const date = moment()
+				.month(month - 1) // minus 1 because in moment, it counts from months 0-11. but mongo counts 12
+				.year(year)
+				.format('MMM Y')
+			return { date, count }
+		})
+		.reverse() // latest 12 months
+
+	res.status(StatusCodes.OK).json({
+		defaultStats,
+		monthlyApplications,
+	})
 }
 
 export { createJob, getAllJobs, updateJob, deleteJob, showStats }
