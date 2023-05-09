@@ -42,6 +42,7 @@ app.use(errorHandlerMiddleware)
 
 const port = process.env.PORT || 5001
 
+// testing git hub
 // connectDB returns a promise so you need async await
 const start = async () => {
     try {
