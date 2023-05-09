@@ -23,3 +23,5 @@ export const GET_JOBS_BEGIN = 'GET_JOB_BEGIN'
 export const GET_JOBS_SUCCESS = 'GET_JOB_SUCCESS'
 
 export const SET_EDIT_JOB = 'SET_EDIT_JOB'
+
+export const DELETE_JOB_BEGIN = 'DELETE_JOB_BEGIN'
