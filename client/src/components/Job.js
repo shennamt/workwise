@@ -37,11 +37,9 @@ const Job = ({
                         {status}
                     </div>
                 </div>
-               
                 <div className='content-center-notes'>
                     <JobInfo text={notes} />
                 </div>
-                
                 <footer>
                     <div className='actions'>
                         <Link to='/add-job' className='btn edit-btn' onClick={() => setEditJob(_id)}> Edit </Link>

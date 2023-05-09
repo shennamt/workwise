@@ -70,7 +70,7 @@ const Wrapper = styled.article`
         }
     }
     .content-center-notes {
-        background: var(--primary-100);
+        background: var(--grey-50);
         margin-top: 1rem;
         padding-top: 0.2rem;
         padding-bottom: 0.5rem;
