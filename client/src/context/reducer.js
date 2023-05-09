@@ -194,7 +194,6 @@ const reducer = (state, action) => {
             jobStyle,
             status,
             notes,
-
         }
     }
 
