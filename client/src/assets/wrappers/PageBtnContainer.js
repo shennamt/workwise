@@ -17,14 +17,19 @@ const Wrapper = styled.section`
 		border-color: transparent;
 		width: 50px;
 		height: 40px;
-		font-weight: 700;
+		font-weight: 300;
 		font-size: 1.25rem;
 		color: var(--primary-500);
 		transition: var(--transition);
 		border-radius: var(--borderRadius);
 		cursor: pointer;
 	}
+	.pageBtn:hover {
+		background: var(--primary-300);
+		color: var(--white);
+	}
 	.active {
+		font-weight: 600;
 		background: var(--primary-500);
 		color: var(--white);
 	}
