@@ -17,7 +17,7 @@ const Wrapper = styled.section`
 		display: grid;
 		grid-template-columns: 1fr;
 		column-gap: 2rem;
-		row-gap: 0.5rem;
+		row-gap: 0.7rem;
 	}
 	select {
 		text-transform: capitalize;
