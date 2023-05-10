@@ -43,7 +43,7 @@ const getAllJobs = async (req, res) => {
 
 	let result = Job.find(queryObject)
 
-	if (sort === 'Most Recently Created') {
+	if (sort === 'Recently Created') {
 		result = result.sort('-createdAt')
 	}
 
@@ -51,7 +51,7 @@ const getAllJobs = async (req, res) => {
 		result = result.sort('createdAt')
 	}
 
-	if (sort === 'Most Recently Updated') {
+	if (sort === 'Recently Updated') {
 		result = result.sort('-updatedAt')
 	}
 

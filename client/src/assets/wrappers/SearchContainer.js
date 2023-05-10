@@ -19,6 +19,12 @@ const Wrapper = styled.section`
 		column-gap: 2rem;
 		row-gap: 0.5rem;
 	}
+	select {
+		text-transform: capitalize;
+	}
+	select option {
+		text-transform: capitalize;
+	}
 	h5 {
 		font-weight: 700;
 	}
