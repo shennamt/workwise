@@ -63,6 +63,10 @@ const getAllJobs = async (req, res) => {
 		result = result.sort('-position')
 	}
 
+	const limit = 0
+	const skip = 0
+	result = result.skip(skip)
+
 	const jobs = await result
 
 	res.status(StatusCodes.OK).json({
