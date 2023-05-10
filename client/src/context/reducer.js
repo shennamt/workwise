@@ -23,9 +23,12 @@ import {
 	EDIT_JOB_ERROR,
 	SHOW_STATS_BEGIN,
 	SHOW_STATS_SUCCESS,
+	CLEAR_FILTERS,
 } from './actions'
 
 import { initialState } from './appContext'
+
+// ALL CONDITIONS FOR ACTIONS
 
 const reducer = (state, action) => {
 	if (action.type === DISPLAY_ALERT) {
@@ -257,6 +260,17 @@ const reducer = (state, action) => {
 			isLoading: false,
 			stats: action.payload.stats,
 			monthlyApplications: action.payload.monthlyApplications,
+		}
+	}
+
+	if (action.type === CLEAR_FILTERS) {
+		return {
+			...state,
+			search: '',
+			searchStatus: 'all',
+			searchType: 'all',
+			searchStyle: 'all',
+			sort: 'Most Recently Created',
 		}
 	}
 
