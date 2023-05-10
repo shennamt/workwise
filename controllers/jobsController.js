@@ -63,9 +63,10 @@ const getAllJobs = async (req, res) => {
 		result = result.sort('-position')
 	}
 
-	const limit = 0
-	const skip = 0
-	result = result.skip(skip)
+	const page = Number(req.query.page) || 1 // shows which page
+	const limit = Number(req.query.limit) || 14 // renders number of jobs per page
+	const skip = (page - 1) * limit
+	result = result.skip(skip).limit(limit)
 
 	const jobs = await result
 
