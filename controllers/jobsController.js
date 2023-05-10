@@ -20,8 +20,18 @@ const createJob = async (req, res) => {
 }
 
 const getAllJobs = async (req, res) => {
-	const { status } = req.query
-	const jobs = await Job.find({ createdBy: req.user.userId, status })
+	const { status, jobType, jobStyle, sort, search } = req.query
+	const queryObject = {
+		createdBy: req.user.userId,
+	}
+	if (status !== 'all') {
+		queryObject.status = status
+	}
+	// no await
+	let result = Job.find(queryObject)
+	// chain short
+	const jobs = await result
+
 	res.status(StatusCodes.OK).json({
 		jobs,
 		totalJobs: jobs.length,
