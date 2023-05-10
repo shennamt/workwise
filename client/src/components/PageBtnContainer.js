@@ -1,8 +1,29 @@
+import { useAppContext } from '../context/appContext'
+import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
+import Wrapper from '../assets/wrappers/PageBtnContainer'
+
 const PageBtnContainer = () => {
+	const { numOfPages, page } = useAppContext()
+
+	const nextPage = () => {
+		console.log('next page')
+	}
+	const prevPage = () => {
+		console.log('prev page')
+	}
+
 	return (
-		<div>
-			<h1>PageBtnContainer</h1>
-		</div>
+		<Wrapper>
+			<button className='prev-btn' onClick={prevPage}>
+				<BsChevronLeft />
+				Prev
+			</button>
+			<div className='btn-container'>buttons here</div>
+			<button className='next-btn' onClick={nextPage}>
+				Next
+				<BsChevronRight />
+			</button>
+		</Wrapper>
 	)
 }
 
