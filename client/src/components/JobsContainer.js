@@ -20,6 +20,7 @@ const JobsContainer = () => {
 		numOfPages,
 	} = useAppContext()
 
+	// for some reason i cant memoize this
 	useEffect(() => {
 		getJobs()
 		// eslint-disable-next-line
@@ -45,7 +46,6 @@ const JobsContainer = () => {
 				{jobs.map((job) => {
 					return <Job key={job._id} {...job} />
 				})}
-				{/* dont forget pagination */}
 			</div>
 			{numOfPages > 1 && <PageBtnContainer />}
 		</Wrapper>
