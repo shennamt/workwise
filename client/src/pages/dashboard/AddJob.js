@@ -1,6 +1,7 @@
 import { FormRow, FormRowSelect, Alert } from '../../components'
 import { useAppContext } from '../../context/appContext'
 import Wrapper from '../../assets/wrappers/DashboardFormPage'
+import { Link } from 'react-router-dom'
 
 const AddJob = () => {
 	const {
@@ -113,6 +114,11 @@ const AddJob = () => {
 							clear
 						</button>
 					</div>
+					<Link to='/all-jobs'>
+						<button className='btn btn-block view-btn'>
+							View all jobs
+						</button>
+					</Link>
 				</div>
 			</form>
 		</Wrapper>
