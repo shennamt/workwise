@@ -17,7 +17,11 @@ const PageBtnContainer = () => {
 	}
 
 	const prevPage = () => {
-		console.log('prev page')
+		let newPage = page - 1
+		if (newPage < numOfPages) {
+			newPage = numOfPages
+		}
+		changePage(newPage)
 	}
 
 	return (
