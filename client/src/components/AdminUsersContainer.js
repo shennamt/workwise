@@ -7,12 +7,6 @@ import Wrapper from '../assets/wrappers/AdminUsersContainer'
 const AdminUsersContainer = () => {
 	const { getUsers, users, isLoading, page, totalUsers } = useAppContext()
 
-	useEffect(() => {
-		getUsers()
-	}, [])
-	if (isLoading) {
-		return <Loading center />
-	}
 	return (
 		<Wrapper>
 			<h5>

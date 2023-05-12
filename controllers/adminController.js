@@ -5,7 +5,6 @@ import Job from '../models/Job.js'
 import adminPermissions from '../utils/adminPermissions.js'
 
 const getAllUsers = async (req, res) => {
-	adminPermissions(req.user)
 	const users = await User.find({}).select('-password')
 	res.status(StatusCodes.OK).json({
 		users,
@@ -25,7 +24,7 @@ const deleteUser = async (req, res) => {
 	if (user.isAdmin) {
 		throw new BadRequestError('Admin accounts cannot be deleted')
 	}
-	adminPermissions(req.user)
+	// adminPermissions(req.user)
 	await Job.deleteMany({ createdBy: userId })
 	await user.deleteOne()
 	res.status(StatusCodes.OK).json({ msg: 'Success! User removed...' })
