@@ -7,7 +7,11 @@ import adminPermissions from '../utils/adminPermissions.js'
 const getAllUsers = async (req, res) => {
 	adminPermissions(req.user)
 	const users = await User.find({}).select('-password')
-	res.status(StatusCodes.OK).json({ users })
+	res.status(StatusCodes.OK).json({
+		users,
+		totalUsers: users.length,
+		numOfPages: 1,
+	})
 }
 
 const deleteUser = async (req, res) => {
