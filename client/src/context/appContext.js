@@ -350,6 +350,10 @@ const AppProvider = ({ children }) => {
 		clearAlert()
 	}
 
+	const deleteUser = (id) => {
+		console.log(`delete user: ${id}`)
+	}
+
 	useEffect(() => {
 		getUsers()
 	}, [])
@@ -374,6 +378,7 @@ const AppProvider = ({ children }) => {
 				clearFilters,
 				changePage,
 				getUsers,
+				deleteUser,
 			}}
 		>
 			{children}
