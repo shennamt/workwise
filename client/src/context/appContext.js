@@ -33,6 +33,7 @@ import {
 	GET_USERS_BEGIN,
 	GET_USERS_SUCCESS,
 	DELETE_USER_BEGIN,
+	DELETE_USER_ERROR,
 } from './actions'
 
 const user = localStorage.getItem('user')
@@ -363,7 +364,11 @@ const AppProvider = ({ children }) => {
 			await authFetch.delete(`/admin/${userId}`)
 			getUsers()
 		} catch (error) {
-			console.log(error.response)
+			if (error.response.status === 401) return
+			dispatch({
+				type: DELETE_USER_ERROR,
+				payload: { msg: error.response.data.msg },
+			})
 			// logoutUser()
 		}
 	}

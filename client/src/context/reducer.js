@@ -29,6 +29,7 @@ import {
 	GET_USERS_BEGIN,
 	GET_USERS_SUCCESS,
 	DELETE_USER_BEGIN,
+	DELETE_USER_ERROR,
 } from './actions'
 
 import { initialState } from './appContext'
@@ -319,6 +320,16 @@ const reducer = (state, action) => {
 		return {
 			...state,
 			isLoading: true,
+		}
+	}
+
+	if (action.type === DELETE_USER_ERROR) {
+		return {
+			...state,
+			isLoading: false,
+			showAlert: true,
+			alertType: 'danger',
+			alertText: action.payload.msg,
 		}
 	}
 
