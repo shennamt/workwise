@@ -1,4 +1,4 @@
-import React, { useReducer, useContext, useEffect } from 'react'
+import React, { useReducer, useContext } from 'react'
 import reducer from './reducer'
 import axios from 'axios'
 
@@ -22,6 +22,7 @@ import {
 	GET_JOBS_SUCCESS,
 	SET_EDIT_JOB,
 	DELETE_JOB_BEGIN,
+	DELETE_JOB_ERROR,
 	EDIT_JOB_BEGIN,
 	EDIT_JOB_SUCCESS,
 	EDIT_JOB_ERROR,
@@ -31,6 +32,7 @@ import {
 	CHANGE_PAGE,
 	GET_USERS_BEGIN,
 	GET_USERS_SUCCESS,
+	DELETE_USER_BEGIN,
 } from './actions'
 
 const user = localStorage.getItem('user')
@@ -300,8 +302,13 @@ const AppProvider = ({ children }) => {
 			await authFetch.delete(`/jobs/${jobId}`)
 			getJobs()
 		} catch (error) {
-			logoutUser()
+			if (error.response.status === 401) return
+			dispatch({
+				type: DELETE_JOB_ERROR,
+				payload: { msg: error.response.data.msg },
+			})
 		}
+		clearAlert()
 	}
 
 	const showStats = async () => {
@@ -345,18 +352,21 @@ const AppProvider = ({ children }) => {
 			})
 		} catch (error) {
 			console.log(error.response)
-			// logoutUser
+			// logoutUser()
 		}
 		clearAlert()
 	}
 
-	const deleteUser = (id) => {
-		console.log(`delete user: ${id}`)
+	const deleteUser = async (userId) => {
+		dispatch({ type: DELETE_USER_BEGIN })
+		try {
+			await authFetch.delete(`/admin/${userId}`)
+			getUsers()
+		} catch (error) {
+			console.log(error.response)
+			// logoutUser()
+		}
 	}
-
-	useEffect(() => {
-		getUsers()
-	}, [])
 
 	return (
 		<AppContext.Provider

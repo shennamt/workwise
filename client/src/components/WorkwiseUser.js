@@ -1,7 +1,7 @@
 import { useAppContext } from '../context/appContext'
 import Wrapper from '../assets/wrappers/WorkwiseUser'
 
-const WorkwiseUser = ({ _id, name, email, location }) => {
+const WorkwiseUser = ({ _id, name, email }) => {
 	const { deleteUser } = useAppContext()
 	return (
 		<Wrapper>
