@@ -7,6 +7,7 @@ import {
 	SharedLayout,
 	Stats,
 	AllUsers,
+	AdminDash,
 } from './pages/dashboard'
 import { useAppContext } from './context/appContext'
 
@@ -26,7 +27,13 @@ function App() {
 					{user && (
 						<>
 							{user.isAdmin ? (
-								<Route index element={<AllUsers />} />
+								<>
+									<Route index element={<AdminDash />} />
+									<Route
+										path='admin'
+										element={<AllUsers />}
+									/>
+								</>
 							) : (
 								<>
 									<Route index element={<Stats />} />
