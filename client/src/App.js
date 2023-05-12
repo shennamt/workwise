@@ -6,7 +6,7 @@ import {
 	Profile,
 	SharedLayout,
 	Stats,
-	AllUsers,
+	AdminUsers,
 	AdminDash,
 } from './pages/dashboard'
 import { useAppContext } from './context/appContext'
@@ -31,7 +31,7 @@ function App() {
 									<Route index element={<AdminDash />} />
 									<Route
 										path='admin'
-										element={<AllUsers />}
+										element={<AdminUsers />}
 									/>
 								</>
 							) : (
