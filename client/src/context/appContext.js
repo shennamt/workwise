@@ -213,7 +213,7 @@ const AppProvider = ({ children }) => {
 				status,
 				notes,
 			} = state
-			await authFetch.post('/jobs', {
+			await authFetch.post('/jobs/new', {
 				position,
 				company,
 				jobLocation,
@@ -276,7 +276,7 @@ const AppProvider = ({ children }) => {
 				status,
 				notes,
 			} = state
-			await authFetch.patch(`/jobs/${state.editJobId}`, {
+			await authFetch.patch(`/jobs/patch/${state.editJobId}`, {
 				position,
 				company,
 				jobLocation,
@@ -300,7 +300,7 @@ const AppProvider = ({ children }) => {
 	const deleteJob = async (jobId) => {
 		dispatch({ type: DELETE_JOB_BEGIN })
 		try {
-			await authFetch.delete(`/jobs/${jobId}`)
+			await authFetch.delete(`/jobs/del/${jobId}`)
 			getJobs()
 		} catch (error) {
 			if (error.response.status === 401) return
