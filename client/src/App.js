@@ -8,8 +8,10 @@ import {
 	Stats,
 	AllUsers,
 } from './pages/dashboard'
+import { useAppContext } from './context/appContext'
 
 function App() {
+	const { user } = useAppContext()
 	return (
 		<BrowserRouter>
 			<Routes>
@@ -21,11 +23,34 @@ function App() {
 						</ProtectedRoute>
 					}
 				>
-					<Route index element={<Stats />} />
+					{user && (
+						<>
+							{user.isAdmin ? (
+								<Route index element={<AllUsers />} />
+							) : (
+								<>
+									<Route index element={<Stats />} />
+									<Route
+										path='all-jobs'
+										element={<AllJobs />}
+									/>
+									<Route
+										path='add-job'
+										element={<AddJob />}
+									/>
+									<Route
+										path='profile'
+										element={<Profile />}
+									/>
+								</>
+							)}
+						</>
+					)}
+					{/* <Route index element={<Stats />} />
 					<Route path='all-jobs' element={<AllJobs />} />
 					<Route path='add-job' element={<AddJob />} />
 					<Route path='profile' element={<Profile />} />
-					<Route path='admin' element={<AllUsers />} />
+					<Route path='admin' element={<AllUsers />} /> */}
 				</Route>
 				<Route path='/register' element={<Register />} />
 				<Route path='/landing' element={<Landing />} />
