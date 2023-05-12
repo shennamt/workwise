@@ -163,7 +163,6 @@ const AppProvider = ({ children }) => {
 	const logoutUser = () => {
 		dispatch({ type: LOGOUT_USER })
 		removeUserFromLocalStorage()
-		window.location.href = '/landing'
 	}
 
 	const updateUser = async (currentUser) => {
