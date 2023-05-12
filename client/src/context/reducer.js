@@ -25,6 +25,8 @@ import {
 	SHOW_STATS_SUCCESS,
 	CLEAR_FILTERS,
 	CHANGE_PAGE,
+	GET_USERS_BEGIN,
+	GET_USERS_SUCCESS,
 } from './actions'
 
 import { initialState } from './appContext'
@@ -280,6 +282,24 @@ const reducer = (state, action) => {
 		return {
 			...state,
 			page: action.payload.page,
+		}
+	}
+
+	if (action.type === GET_USERS_BEGIN) {
+		return {
+			...state,
+			isLoading: true,
+			showAlert: false,
+		}
+	}
+
+	if (action.type === GET_USERS_SUCCESS) {
+		return {
+			...state,
+			isLoading: false,
+			users: action.payload.users,
+			totalUsers: action.payload.totalUsers,
+			numOfPages: action.payload.numOfPages,
 		}
 	}
 

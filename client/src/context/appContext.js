@@ -1,4 +1,4 @@
-import React, { useReducer, useContext } from 'react'
+import React, { useReducer, useContext, useEffect } from 'react'
 import reducer from './reducer'
 import axios from 'axios'
 
@@ -29,6 +29,8 @@ import {
 	SHOW_STATS_SUCCESS,
 	CLEAR_FILTERS,
 	CHANGE_PAGE,
+	GET_USERS_BEGIN,
+	GET_USERS_SUCCESS,
 } from './actions'
 
 const user = localStorage.getItem('user')
@@ -74,6 +76,8 @@ const initialState = {
 		'A - Z',
 		'Z - A',
 	],
+	users: [],
+	totalUsers: 0,
 }
 
 const AppContext = React.createContext()
@@ -326,6 +330,30 @@ const AppProvider = ({ children }) => {
 		dispatch({ type: CHANGE_PAGE, payload: { page } })
 	}
 
+	const getUsers = async () => {
+		let url = `/admin`
+		dispatch({ type: GET_USERS_BEGIN })
+		try {
+			const { data } = await authFetch(url)
+			const { users, totalUsers, numOfPages } = data
+			dispatch({
+				type: GET_USERS_SUCCESS,
+				payload: {
+					users,
+					totalUsers,
+					numOfPages,
+				},
+			})
+		} catch (error) {
+			console.log(error.response)
+		}
+		clearAlert()
+	}
+
+	useEffect(() => {
+		getUsers()
+	}, [])
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -345,6 +373,7 @@ const AppProvider = ({ children }) => {
 				showStats,
 				clearFilters,
 				changePage,
+				getUsers,
 			}}
 		>
 			{children}
