@@ -8,8 +8,8 @@ const SharedLayout = () => {
 	return (
 		<Wrapper>
 			<main className='dashboard'>
-				{user && !user.isAdmin && <SmallSidebar />}
-				{user && !user.isAdmin && <BigSidebar />}
+				<SmallSidebar />
+				<BigSidebar />
 				<div>
 					<Navbar />
 					<div className='dashboard-page'>
