@@ -16,18 +16,18 @@ const getAllUsers = async (req, res) => {
 
 const deleteUser = async (req, res) => {
 	const { id: userId } = req.params
-	const otherUser = await User.findOne({ _id: userId })
+	const user = await User.findOne({ _id: userId })
 
-	if (!otherUser) {
+	if (!user) {
 		throw new NotFoundError(`No user with id: ${userId}`)
 	}
 
-	if (otherUser.isAdmin) {
+	if (user.isAdmin) {
 		throw new BadRequestError('Admin accounts cannot be deleted')
 	}
 	adminPermissions(req.user)
 	await Job.deleteMany({ createdBy: userId })
-	await otherUser.deleteOne()
+	await user.deleteOne()
 	res.status(StatusCodes.OK).json({ msg: 'Success! User removed...' })
 }
 
