@@ -361,7 +361,7 @@ const AppProvider = ({ children }) => {
 	const deleteUser = async (userId) => {
 		dispatch({ type: DELETE_USER_BEGIN })
 		try {
-			await authFetch.delete(`/admin/${userId}`)
+			// await authFetch.delete(`/admin/${userId}`)
 			getUsers()
 		} catch (error) {
 			if (error.response.status === 401) return
