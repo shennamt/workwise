@@ -7,15 +7,29 @@ import Wrapper from '../assets/wrappers/AdminUsersContainer'
 const AdminUsersContainer = () => {
 	const { getUsers, users, isLoading, page, totalUsers } = useAppContext()
 
+	useEffect(() => {
+		getUsers()
+		// eslint-disable-next-line
+	}, [])
+
+	if (isLoading) {
+		return <Loading center />
+	}
+
 	return (
 		<Wrapper>
 			<h5>
 				{totalUsers} User{users.length > 1 && 's'} found
 			</h5>
 			<div className='users'>
-				{users.map((user) => {
-					return <WorkwiseUser key={user._id} {...user} />
-				})}
+				{/* {JSON.stringify(users)} */}
+				{users ? (
+					users.map((data) => {
+						return <WorkwiseUser key={data._id} user={data} />
+					})
+				) : (
+					<p>No users found.</p>
+				)}
 			</div>
 		</Wrapper>
 	)

@@ -352,8 +352,7 @@ const AppProvider = ({ children }) => {
 				},
 			})
 		} catch (error) {
-			console.log(error.response)
-			// logoutUser()
+			logoutUser()
 		}
 		clearAlert()
 	}
@@ -361,7 +360,7 @@ const AppProvider = ({ children }) => {
 	const deleteUser = async (userId) => {
 		dispatch({ type: DELETE_USER_BEGIN })
 		try {
-			// await authFetch.delete(`/admin/${userId}`)
+			await authFetch.delete(`/admin/${userId}`)
 			getUsers()
 		} catch (error) {
 			if (error.response.status === 401) return
@@ -369,7 +368,7 @@ const AppProvider = ({ children }) => {
 				type: DELETE_USER_ERROR,
 				payload: { msg: error.response.data.msg },
 			})
-			// logoutUser()
+			logoutUser()
 		}
 	}
 

@@ -42,6 +42,7 @@ const JobsContainer = () => {
 			<h5>
 				{totalJobs} job{jobs.length > 1 && 's'} found
 			</h5>
+			{JSON.stringify(jobs)}
 			<div className='jobs'>
 				{jobs.map((job) => {
 					return <Job key={job._id} {...job} />
