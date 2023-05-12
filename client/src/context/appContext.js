@@ -80,6 +80,7 @@ const AppContext = React.createContext()
 
 const AppProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState)
+
 	const authFetch = axios.create({
 		baseURL: '/api/v1',
 	})
@@ -158,6 +159,7 @@ const AppProvider = ({ children }) => {
 	const logoutUser = () => {
 		dispatch({ type: LOGOUT_USER })
 		removeUserFromLocalStorage()
+		window.location.href = '/landing'
 	}
 
 	const updateUser = async (currentUser) => {
