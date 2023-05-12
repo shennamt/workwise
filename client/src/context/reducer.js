@@ -18,6 +18,7 @@ import {
 	GET_JOBS_SUCCESS,
 	SET_EDIT_JOB,
 	DELETE_JOB_BEGIN,
+	DELETE_JOB_ERROR,
 	EDIT_JOB_BEGIN,
 	EDIT_JOB_SUCCESS,
 	EDIT_JOB_ERROR,
@@ -25,6 +26,10 @@ import {
 	SHOW_STATS_SUCCESS,
 	CLEAR_FILTERS,
 	CHANGE_PAGE,
+	GET_USERS_BEGIN,
+	GET_USERS_SUCCESS,
+	DELETE_USER_BEGIN,
+	DELETE_USER_ERROR,
 } from './actions'
 
 import { initialState } from './appContext'
@@ -221,6 +226,16 @@ const reducer = (state, action) => {
 		return { ...state, isLoading: true }
 	}
 
+	if (action.type === DELETE_JOB_ERROR) {
+		return {
+			...state,
+			isLoading: false,
+			showAlert: true,
+			alertType: 'danger',
+			alertText: action.payload.msg,
+		}
+	}
+
 	if (action.type === EDIT_JOB_BEGIN) {
 		return {
 			...state,
@@ -280,6 +295,41 @@ const reducer = (state, action) => {
 		return {
 			...state,
 			page: action.payload.page,
+		}
+	}
+
+	if (action.type === GET_USERS_BEGIN) {
+		return {
+			...state,
+			isLoading: true,
+			showAlert: false,
+		}
+	}
+
+	if (action.type === GET_USERS_SUCCESS) {
+		return {
+			...state,
+			isLoading: false,
+			users: action.payload.users,
+			totalUsers: action.payload.totalUsers,
+			numOfPages: action.payload.numOfPages,
+		}
+	}
+
+	if (action.type === DELETE_USER_BEGIN) {
+		return {
+			...state,
+			isLoading: true,
+		}
+	}
+
+	if (action.type === DELETE_USER_ERROR) {
+		return {
+			...state,
+			isLoading: false,
+			showAlert: true,
+			alertType: 'danger',
+			alertText: action.payload.msg,
 		}
 	}
 

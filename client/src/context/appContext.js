@@ -22,6 +22,7 @@ import {
 	GET_JOBS_SUCCESS,
 	SET_EDIT_JOB,
 	DELETE_JOB_BEGIN,
+	DELETE_JOB_ERROR,
 	EDIT_JOB_BEGIN,
 	EDIT_JOB_SUCCESS,
 	EDIT_JOB_ERROR,
@@ -29,6 +30,10 @@ import {
 	SHOW_STATS_SUCCESS,
 	CLEAR_FILTERS,
 	CHANGE_PAGE,
+	GET_USERS_BEGIN,
+	GET_USERS_SUCCESS,
+	DELETE_USER_BEGIN,
+	DELETE_USER_ERROR,
 } from './actions'
 
 const user = localStorage.getItem('user')
@@ -74,12 +79,15 @@ const initialState = {
 		'A - Z',
 		'Z - A',
 	],
+	users: [],
+	totalUsers: 0,
 }
 
 const AppContext = React.createContext()
 
 const AppProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState)
+
 	const authFetch = axios.create({
 		baseURL: '/api/v1',
 	})
@@ -295,8 +303,13 @@ const AppProvider = ({ children }) => {
 			await authFetch.delete(`/jobs/${jobId}`)
 			getJobs()
 		} catch (error) {
-			logoutUser()
+			if (error.response.status === 401) return
+			dispatch({
+				type: DELETE_JOB_ERROR,
+				payload: { msg: error.response.data.msg },
+			})
 		}
+		clearAlert()
 	}
 
 	const showStats = async () => {
@@ -324,6 +337,41 @@ const AppProvider = ({ children }) => {
 		dispatch({ type: CHANGE_PAGE, payload: { page } })
 	}
 
+	const getUsers = async () => {
+		let url = `/admin`
+		dispatch({ type: GET_USERS_BEGIN })
+		try {
+			const { data } = await authFetch(url)
+			const { users, totalUsers, numOfPages } = data
+			dispatch({
+				type: GET_USERS_SUCCESS,
+				payload: {
+					users,
+					totalUsers,
+					numOfPages,
+				},
+			})
+		} catch (error) {
+			logoutUser()
+		}
+		clearAlert()
+	}
+
+	const deleteUser = async (userId) => {
+		dispatch({ type: DELETE_USER_BEGIN })
+		try {
+			await authFetch.delete(`/admin/${userId}`)
+			getUsers()
+		} catch (error) {
+			if (error.response.status === 401) return
+			dispatch({
+				type: DELETE_USER_ERROR,
+				payload: { msg: error.response.data.msg },
+			})
+			logoutUser()
+		}
+	}
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -343,6 +391,8 @@ const AppProvider = ({ children }) => {
 				showStats,
 				clearFilters,
 				changePage,
+				getUsers,
+				deleteUser,
 			}}
 		>
 			{children}
