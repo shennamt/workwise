@@ -5,7 +5,7 @@ import WorkwiseUser from './WorkwiseUser'
 import Wrapper from '../assets/wrappers/AdminUsersContainer'
 
 const AdminUsersContainer = () => {
-	const { getUsers, users, isLoading, page, totalUsers } = useAppContext()
+	const { getUsers, users, isLoading, totalUsers } = useAppContext()
 
 	useEffect(() => {
 		getUsers()
