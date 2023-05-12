@@ -1,8 +1,4 @@
-import { Link } from 'react-router-dom'
-import { FaUserAlt, FaLocationArrow } from 'react-icons/fa'
-import { MdEmail } from 'react-icons/md'
 import { useAppContext } from '../context/appContext'
-import JobInfo from './JobInfo'
 import Wrapper from '../assets/wrappers/WorkwiseUser'
 
 const WorkwiseUser = ({ _id, name, email, location }) => {
@@ -15,6 +11,17 @@ const WorkwiseUser = ({ _id, name, email, location }) => {
 					<h5>{name}</h5>
 					<p>{email}</p>
 				</div>
+				<footer>
+					<div className='actions'>
+						<button
+							type='button'
+							className='btn delete-btn'
+							onClick={deleteUser(_id)}
+						>
+							Delete
+						</button>
+					</div>
+				</footer>
 			</header>
 		</Wrapper>
 	)
