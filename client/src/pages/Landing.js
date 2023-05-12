@@ -15,7 +15,7 @@ const Landing = () => {
 					<h1>
 						<span>WorkWise</span>
 					</h1>
-					<h4>The preferred job tracking app</h4>
+					<h4>A fuss-free job tracking app</h4>
 					<p>
 						Designed to help job seekers easily track their job
 						applications. Keep a log of your applications, set
