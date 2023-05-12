@@ -12,15 +12,13 @@ const Navbar = () => {
 	return (
 		<Wrapper>
 			<div className='nav-center'>
-				{!user?.isAdmin && (
-					<button
-						type='button'
-						className='toggle-btn'
-						onClick={toggleSidebar}
-					>
-						<FaAlignLeft />
-					</button>
-				)}
+				<button
+					type='button'
+					className='toggle-btn'
+					onClick={toggleSidebar}
+				>
+					<FaAlignLeft />
+				</button>
 				<div>
 					<Logo />
 					<h3 className='logo-text'>Dashboard</h3>

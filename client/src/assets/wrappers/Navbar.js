@@ -69,7 +69,7 @@ const Wrapper = styled.nav`
 		position: sticky;
 		top: 0;
 		.nav-center {
-			width: 100vw;
+			width: 90%;
 		}
 		.logo {
 			display: none;
