@@ -7,7 +7,8 @@
 **Workwise** is a job application tracking app designed to help users keep track of their job search progress. By keeping track of their job search progress, users can stay organized and motivated in their job search, ensuring that they don't miss out on any potential job opportunities. Workwise is the simplest solution for anyone looking to streamline their job search and maximize their chances of landing their dream job.
 
 <img src="https://i.ibb.co/Xjxk3ww/Screenshot-2023-05-13-at-4-49-23-AM.png" alt="Figma" height="500" >
-View the user stories and wireframes [figma](http://https://www.figma.com/file/NOynEmeSPyEb8lSKFb7og1/WorkWise?type=whiteboard&node-id=0%3A1&t=LPif6eZLrQWeZR2h-1 "figma").
+
+View the user stories and wireframes [here](https://www.figma.com/file/NOynEmeSPyEb8lSKFb7og1/WorkWise?type=whiteboard&node-id=0%3A1&t=qNAvRj5Zv6IuUm4t-1).
 
 ## Stack
 
